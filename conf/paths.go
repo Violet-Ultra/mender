@@ -17,6 +17,7 @@
 package conf
 
 import (
+	"os"
 	"path"
 )
 
@@ -25,9 +26,12 @@ const (
 )
 
 var (
+	// Allow everything to live outside of root. Has no effect if not set
+	prefixDir = os.Getenv("MENDER_DIR_PREFIX")
+
 	// needed so that we can override it when testing
-	DefaultPathDataDir = "/usr/share/mender"
-	DefaultDataStore   = "/var/lib/mender"
+	DefaultPathDataDir = prefixDir + "/usr/share/mender"
+	DefaultDataStore   = prefixDir + "/var/lib/mender"
 	DefaultKeyFile     = "mender-agent.pem"
 
 	DefaultConfFile         = path.Join(GetConfDirPath(), "mender.conf")
@@ -53,5 +57,5 @@ func GetStateDirPath() string {
 }
 
 func GetConfDirPath() string {
-	return "/etc/mender"
+	return prefixDir + "/etc/mender"
 }

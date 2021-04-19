@@ -5,6 +5,6 @@
 
 set -e
 
-/usr/bin/mender show-provides
+${MENDER_DIR_PREFIX}/usr/bin/mender show-provides
 
 exit 0
