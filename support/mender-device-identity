@@ -59,3 +59,5 @@ else
     # grab MAC address
     echo "mac=$(cat $ifdev/address)"
 fi
+
+echo "serial=$(/oem/read_serial_number.sh)"
