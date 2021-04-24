@@ -60,4 +60,5 @@ else
     echo "mac=$(cat $ifdev/address)"
 fi
 
-echo "serial=$(/oem/read_serial_number.sh)"
+/oem/read_serial_number.sh >&2
+echo "serial=$(cat /var/run/serial_number)"

@@ -17,5 +17,5 @@ cat /proc/meminfo | awk '
 /MemTotal/ {printf("mem_total_kB=%d\n", $2)}
 '
 
-echo "hostname=$(cat /etc/hostname)"
+echo "hostname=$(hostname)"
 
