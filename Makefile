@@ -114,8 +114,8 @@ install-inventory-local-scripts: install-datadir
 	install -m 755 $(INVENTORY_SCRIPTS) $(prefix)$(datadir)/mender/inventory/
 
 install-inventory-network-scripts: install-datadir
-	install -m 755 -d $(prefix)$(datadir)/mender/inventory
-	install -m 755 $(INVENTORY_NETWORK_SCRIPTS) $(prefix)$(datadir)/mender/inventory/
+#	install -m 755 -d $(prefix)$(datadir)/mender/inventory
+#	install -m 755 $(INVENTORY_NETWORK_SCRIPTS) $(prefix)$(datadir)/mender/inventory/
 
 install-modules:
 	install -m 755 -d $(prefix)$(datadir)/mender/modules/v3
