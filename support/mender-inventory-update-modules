@@ -9,12 +9,12 @@ set -e
 
 RESET_INVENTORY="true"
 
-if [ ! -d /usr/share/mender/modules/ ]; then
+if [ ! -d ${MENDER_DIR_PREFIX}/usr/share/mender/modules/ ]; then
     echo update_modules=""
     exit 0
 fi
 
-for file in /usr/share/mender/modules/*/*; do
+for file in ${MENDER_DIR_PREFIX}/usr/share/mender/modules/*/*; do
     if [ ! -x "${file}" ]; then
       continue
     fi
