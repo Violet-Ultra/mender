@@ -61,12 +61,18 @@ INVENTORY_SCRIPTS = \
 INVENTORY_NETWORK_SCRIPTS = \
 	support/mender-inventory-geo
 
+# MODULES = \
+# 	support/modules/deb \
+# 	support/modules/docker \
+# 	support/modules/directory \
+# 	support/modules/single-file \
+# 	support/modules/rpm \
+# 	support/modules/script
+
 MODULES = \
-	support/modules/deb \
-	support/modules/docker \
 	support/modules/directory \
+	support/modules/oem-dir \
 	support/modules/single-file \
-	support/modules/rpm \
 	support/modules/script
 
 MODULES_ARTIFACT_GENERATORS = \
