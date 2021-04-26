@@ -31,8 +31,9 @@ var (
 
 	// needed so that we can override it when testing
 	DefaultPathDataDir = prefixDir + "/usr/share/mender"
-	DefaultDataStore   = prefixDir + "/var/lib/mender"
-	DefaultKeyFile     = "mender-agent.pem"
+	//DefaultDataStore   = prefixDir + "/var/lib/mender"
+	DefaultDataStore = "/userdata/mender"
+	DefaultKeyFile   = "mender-agent.pem"
 
 	DefaultConfFile         = path.Join(GetConfDirPath(), "mender.conf")
 	DefaultFallbackConfFile = path.Join(GetStateDirPath(), "mender.conf")
