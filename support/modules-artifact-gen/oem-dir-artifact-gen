@@ -47,7 +47,7 @@ if ! check_dependency mender-artifact; then
   exit 1
 fi
 
-REPO_DIR=$HOME/VioletSwitch
+REPO_DIR=$HOME/SmartSwitchLite
 version=$(cat $REPO_DIR/oem/version.txt)
 device_types="-t smartswitchlite"
 artifact_name="oem-dir-$version"
