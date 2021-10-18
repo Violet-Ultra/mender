@@ -30,6 +30,9 @@ case "$STATE" in
 
     ArtifactInstall)
         echo "beginning of ArtifactInstall"
+        # Allow commands (e.g. kill_main.sh) to fail otherwise it will exit and
+        # prevent the update from happening
+        set +e
         # Kill off main app if it's running
         /oem/kill_main.sh
         /oem/show_msg.sh "Update in progress, please wait..." &
