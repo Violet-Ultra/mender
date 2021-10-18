@@ -47,59 +47,19 @@ if ! check_dependency mender-artifact; then
   exit 1
 fi
 
-REPO_DIR=$HOME/SmartSwitchLite
-version=$(cat $REPO_DIR/oem/version.txt)
-device_types="-t smartswitchlite"
-artifact_name="oem-dir-$version"
-#dest_dir="/oem"
-output_path="$REPO_DIR/$artifact_name.mender"
-update_files_tar="update.tar"
-#dest_dir_file="dest_dir"
-file_tree="$REPO_DIR/oem"
-passthrough=1
-passthrough_args="--software-filesystem directory --software-version $version  --software-name oem"
-
 while (( "$#" )); do
-  if test $passthrough -eq 1
-  then
-    passthrough_args="$passthrough_args $1"
-    shift
-    continue
-  fi
+  # if test $passthrough -eq 1
+  # then
+  #   passthrough_args="$passthrough_args $1"
+  #   shift
+  #   continue
+  # fi
   case "$1" in
-    --device-type | -t)
+    --repo-dir | -r)
       if [ -z "$2" ]; then
         show_help_and_exit_error
       fi
-      device_types="$device_types $1 $2"
-      shift 2
-      ;;
-    --artifact-name | -n)
-      if [ -z "$2" ]; then
-        show_help_and_exit_error
-      fi
-      artifact_name=$2
-      shift 2
-      ;;
-#    --dest-dir | -d)
-#      if [ -z "$2" ]; then
-#        show_help_and_exit_error
-#      fi
-#      dest_dir=$2
-#      shift 2
-#      ;;
-    --software-name | --software-version | --software-filesystem)
-      if [ -z "$2" ]; then
-        show_help_and_exit_error
-      fi
-      passthrough_args="$passthrough_args $1 $2"
-      shift 2
-      ;;
-    --output-path | -o)
-      if [ -z "$2" ]; then
-        show_help_and_exit_error
-      fi
-      output_path=$2
+      REPO_DIR=$2
       shift 2
       ;;
     -h | --help)
@@ -124,6 +84,16 @@ while (( "$#" )); do
       ;;
   esac
 done
+
+#REPO_DIR=$HOME/SmartSwitchLite
+version=$(cat $REPO_DIR/oem/version.txt)
+device_types="-t smartswitchlite"
+artifact_name="oem-dir-$version"
+output_path="$REPO_DIR/$artifact_name.mender"
+update_files_tar="update.tar"
+file_tree="$REPO_DIR/oem"
+passthrough=1
+passthrough_args="--software-filesystem directory --software-version $version  --software-name oem"
 
 if [ -z "${artifact_name}" ]; then
   echo "Artifact name not specified. Aborting."
