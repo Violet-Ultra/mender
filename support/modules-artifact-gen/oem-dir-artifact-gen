@@ -87,7 +87,7 @@ done
 
 #REPO_DIR=$HOME/SmartSwitchLite
 version=$(cat $REPO_DIR/oem/version.txt)
-device_types="-t smartswitchlite"
+device_types="-t smartswitchlite -t smartswitchgen2"
 artifact_name="oem-dir-$version"
 output_path="$REPO_DIR/$artifact_name.mender"
 update_files_tar="update.tar"
