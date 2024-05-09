@@ -40,8 +40,23 @@ case "$STATE" in
         # everything gets deleted
         sleep 1
         dest_dir=/oem
+        temp_dir=/tmp/oem
+        mkdir -p ${temp_dir}
+
+        echo "Extracting update files"
+        # re-enable exit on error to check that extracting the tar doesn't fail
+        set -e
+        tar -xf ${update_files_tar} -C ${temp_dir}
+        echo "Deleting old files"
         rm -rf ${dest_dir}/*
-        tar -xf ${update_files_tar} -C ${dest_dir}
+        echo "Copying new files"
+        cp -r ${temp_dir}/* ${dest_dir}
+        sync
+        echo "New files copied and synced"
+
+        # Disable exit on error again
+        set +e
+
         # If got to here then can remove the production seal
         rm -f /oem/prod_seal
 
