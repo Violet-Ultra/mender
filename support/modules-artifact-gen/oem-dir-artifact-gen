@@ -85,8 +85,18 @@ while (( "$#" )); do
   esac
 done
 
-#REPO_DIR=$HOME/SmartSwitchLite
+set +e
 version=$(cat $REPO_DIR/oem/version.txt)
+# Test for exit code being 0
+if [ $? -ne 0 ]; then
+  # Must be new apps layout
+  version=$(cat $REPO_DIR/oem/apps/version.txt)
+  if [ $? -ne 0 ]; then
+    echo "Error: Could not find version.txt in $REPO_DIR/oem or $REPO_DIR/oem/apps"
+    exit 1
+  fi
+fi
+set -e
 device_types="-t smartswitchlite -t smartswitchgen2 -t rithumswitchpro"
 artifact_name="oem-dir-$version"
 output_path="$REPO_DIR/$artifact_name.mender"
